@@ -9,7 +9,6 @@
 
 % Define the grid size
 size(4).
-subgrid_size(2).
 
 % Possible numbers
 num(1..4).
@@ -22,13 +21,6 @@ num(1..4).
 
 % Each column must have distinct numbers
 :- sudoku(X1,Y,N), sudoku(X2,Y,N), X1 != X2.
-
-% Define subgrid mapping formula
-subgrid(X,Y,G) :- subgrid_size(N), X = 1..N, Y = 1..N, G = 1 + (((X-1) / N) * N + (Y-1) / N).
-
-% Each 2×2 subgrid must have distinct numbers
-:- sudoku(X1,Y1,N), sudoku(X2,Y2,N), subgrid(X1,Y1,G), subgrid(X2,Y2,G), 
-   X1 != X2, Y1 != Y2.
 
 % Predefined clues
 sudoku(X,Y,N) :- initial(X,Y,N).
